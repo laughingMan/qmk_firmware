@@ -122,7 +122,8 @@ void *led_setups[] = {
     // leds_white_with_red_stripe,
     // leds_black_with_red_stripe,
     leds_off,
-    leds_white_custom
+    leds_white_custom,
+    leds_rainbow_s 
 };
 
 const uint8_t led_setups_count = sizeof(led_setups) / sizeof(led_setups[0]);
