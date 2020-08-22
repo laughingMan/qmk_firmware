@@ -29,36 +29,63 @@ enum alt_keycodes {
 
 #define TG_NKRO MAGIC_TOGGLE_NKRO //Toggle 6KRO / NKRO mode
 
+#define _BASE 0
+#define _BALT 1
+#define _BMOD 2
+#define _WIN  3
+#define _WALT 4
+#define _WMOD 5
+
+#define KC_WINU M(0)
+#define KC_WIND M(1)
+#define KC_PSWD M(2)
+#define KC_SOCO M(3)
+
+
 keymap_config_t keymap_config;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT(
+    [_BASE] = LAYOUT(
         KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_DEL,  \
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_HOME, \
         KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,  KC_PGUP, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,          KC_UP,   KC_PGDN, \
-        KC_LCTL, KC_LALT, KC_LGUI,                            KC_SPC,                             KC_RGUI, MO(1),   KC_LEFT, KC_DOWN, KC_RGHT  \
+        KC_LCTL, KC_LALT, KC_LGUI,                            KC_SPC,                             KC_RGUI, MO(_BALT),   KC_LEFT, KC_DOWN, KC_RGHT  \
     ),
-    [1] = LAYOUT(
+    [_BALT] = LAYOUT(
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, KC_MUTE, \
         L_T_BR,  L_PSD,   L_BRI,   L_PSI,   L_EDG_I, _______, _______, _______, U_T_AGCR,_______, KC_PSCR, KC_SLCK, KC_PAUS, _______, KC_MPLY, \
         L_T_PTD, L_PTP,   L_BRD,   L_PTN,   L_EDG_D, _______, _______, _______, _______, _______, _______, _______,          _______, KC_VOLU, \
         _______, L_T_MD,  L_T_ONF, _______, L_EDG_M, MD_BOOT, TG_NKRO, _______, _______, _______, _______, _______,          KC_PGUP, KC_VOLD, \
-        _______, _______, _______,                            DBG_FAC,                            OSL(2),  _______,  KC_HOME, KC_PGDN, KC_END   \
+        _______, _______, _______,                            DBG_FAC,                            OSL(_BMOD),  _______,  KC_HOME, KC_PGDN, KC_END   \
     ),
-    [2] = LAYOUT(
+    [_BMOD] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, LALT(KC_T), \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, LALT(KC_K), \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, LALT(KC_B), \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, KC_SOCO,    \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, LALT(KC_G), \
-        _______, _______, _______,                            _______,                            DF(0),   DF(3),   _______, _______, _______     \
+        _______, _______, _______,                            _______,                            _______, KC_WINU, _______, _______, _______     \
     ),
-    [3] = LAYOUT(
+    [_WIN] = LAYOUT(
         KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_DEL,  \
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_HOME, \
         KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,  KC_PGUP, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,          KC_UP,   KC_PGDN, \
-        KC_LGUI, KC_LALT, KC_LCTL,                            KC_SPC,                             KC_RCTL, MO(1),   KC_LEFT, KC_DOWN, KC_RGHT  \
+        KC_LGUI, KC_LALT, KC_LCTL,                            KC_SPC,                             KC_RCTL, MO(_WALT),   KC_LEFT, KC_DOWN, KC_RGHT  \
+    ),
+    [_WALT] = LAYOUT(
+        KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, KC_MUTE, \
+        L_T_BR,  L_PSD,   L_BRI,   L_PSI,   L_EDG_I, _______, _______, _______, U_T_AGCR,_______, KC_PSCR, KC_SLCK, KC_PAUS, _______, KC_MPLY, \
+        L_T_PTD, L_PTP,   L_BRD,   L_PTN,   L_EDG_D, _______, _______, _______, _______, _______, _______, _______,          _______, KC_VOLU, \
+        _______, L_T_MD,  L_T_ONF, _______, L_EDG_M, MD_BOOT, TG_NKRO, _______, _______, _______, _______, _______,          KC_PGUP, KC_VOLD, \
+        _______, _______, _______,                            DBG_FAC,                            OSL(_WMOD),  _______,  KC_HOME, KC_PGDN, KC_END   \
+    ),
+    [_WMOD] = LAYOUT(
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, \
+        _______, _______, _______,                            _______,                            _______, KC_WIND, _______, _______, _______     \
     ),
     /*
     [X] = LAYOUT(
@@ -78,6 +105,44 @@ void matrix_init_user(void) {
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
 };
+
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
+{
+    switch(id) {
+        case 0: // this would trigger when you hit a key mapped as M(0)
+            if (record->event.pressed) {
+                layer_on(_WIN);
+                // #ifdef RGBLIGHT_ENABLE
+                    setrgb(0,255,0);
+                // #endif
+                return false;
+            }
+        break;
+        case 1:
+            if (record->event.pressed) {
+                layer_off(_WIN);
+                // #ifdef RGBLIGHT_ENABLE
+                    setrgb(255,255,255);
+                // #endif
+                return false;
+            }
+            break;
+        case 2:
+            if (record->event.pressed) {
+                SEND_STRING("P@$$W0rd");
+                return false;
+            }
+        break;
+        case 3:
+            if (record->event.pressed) {
+                SEND_STRING( SS_LALT("kt"));
+                return false;
+            }
+  }
+  return MACRO_NONE;
+};
+
+
 
 #define MODS_SHIFT (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT))
 #define MODS_CTRL (get_mods() & MOD_BIT(KC_LCTL) || get_mods() & MOD_BIT(KC_RCTRL))
